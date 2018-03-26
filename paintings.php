@@ -20,7 +20,7 @@ include 'dbFunctions.php';
 <?php
  foreach ($paintings as $row) {
      echo '<tr>';
-     echo '<td>' . $row['title'] . '</td> <td> <img src="img/'. $row['filename']. '"/></td>';
+     echo '<td>' . '<a href="searchPaintings.php?id=' . $row['id'] . '">'. $row['title'] . '</a></td> <td> <img src="img/'. $row['filename']. '"/></td>';
 	 echo '</tr>';
  }
 
