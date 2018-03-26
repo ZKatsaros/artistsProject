@@ -15,6 +15,25 @@ function getArtists()
 }
 
 
+function getPaintings()
+{
+    include "db.php";
+    $results = $db->query("select title, filename from paintings");
+    $resultsArray = $results->fetchAll(PDO::FETCH_ASSOC);
+    return $resultsArray;
+}
+
+function getPaintingBlob($id) {
+    include "db.php";
+    $results = $db->prepare("select title, image, price, name as artist from paintings p, artists a where p.artistid = a.id and p.id = ?");
+    $results->bindValue(1, $id);
+    $results->execute();
+    
+    $resultsArray = $results->fetchAll(PDO::FETCH_ASSOC);
+    return $resultsArray;
+     
+}
+
 function addArtist($artistName) {
       include "db.php";
       try{ 
